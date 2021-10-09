@@ -1,5 +1,9 @@
 pipeline{
   agent any
+
+  tools {
+    maven "maven"
+  }
   stages{
     stage("Git Checkout"){
       steps{
@@ -16,9 +20,8 @@ pipeline{
             }
      stage("deploy-dev"){
        steps{
-          sh "echo hello"
+          sh echo "hello"
             }
           }
         }
       }
-    
