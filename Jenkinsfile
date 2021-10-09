@@ -23,8 +23,9 @@ pipeline{
      stage("deploy-dev"){
        steps{
           sh "echo hello"
+          sh "docker container run -d -p 8888:8080 --name tomcat_docker humayunalam/tomcat-maven"
+          sh "docker cp target/*.war tomcat_docker:/opt/tomcat/webapps"
             }
           }
         }
       }
-    
