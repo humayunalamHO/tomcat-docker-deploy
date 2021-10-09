@@ -23,15 +23,10 @@ pipeline{
      stage("deploy-docker"){
        steps{
           sh """
-          echo "hello"
           docker container run -d -p 8888:8080 --name ${env.JOB_NAME}-${BUILD_NUMBER} humayunalam/tomcat-maven
           docker cp target/*.war ${env.JOB_NAME}-${BUILD_NUMBER}:/opt/tomcat/webapps
-          echo "The build number is ${env.BUILD_NUMBER}"
-                echo "You can also use \${BUILD_NUMBER} -> ${BUILD_NUMBER}"
-          echo "The build number is ${env.JOB_NAME}"
           """
             }
           }
         }
       }
-    
