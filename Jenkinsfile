@@ -20,7 +20,7 @@ pipeline{
             sh "mv target/*.war target/myweb.war"
              }
             }
-     stage("deploy-dev"){
+     stage("deploy-docker"){
        steps{
           sh """
           echo "hello"
@@ -28,8 +28,8 @@ pipeline{
           docker cp target/*.war tomcat_docker:/opt/tomcat/webapps
           echo "The build number is ${env.BUILD_NUMBER}"
                 echo "You can also use \${BUILD_NUMBER} -> ${BUILD_NUMBER}"
+          echo "The build number is ${env.JOB_NAME}"
           """
-
             }
           }
         }
