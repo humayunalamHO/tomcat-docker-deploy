@@ -24,7 +24,7 @@ pipeline{
        steps{
           sh """
           docker build . -t tomcat_dockerfile 
-          docker container run -d -p --name ${env.JOB_NAME}-${BUILD_NUMBER} tomcat_dockerfile
+          docker container run -d -p --name ${env.JOB_NAME}-${env.BRANCH_NAME}-${env.BUILD_NUMBER} tomcat_dockerfile
           docker cp target/*.war ${env.JOB_NAME}-${env.BUILD_NUMBER}:/opt/tomcat/webapps
           """
             }
