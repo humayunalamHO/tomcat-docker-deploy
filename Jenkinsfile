@@ -26,7 +26,7 @@ pipeline{
           docker build . -t tomcat_dockerfile 
           docker container run -d -P --name dockerfile-${env.BUILD_NUMBER} tomcat_dockerfile
           docker cp target/*.war dockerfile-${env.BUILD_NUMBER}:/opt/tomcat/webapps
-	  echo "heiddh this is Dockerfile"
+	  echo "heiddt this is Dockerfile"
 	  """
             }
           }
