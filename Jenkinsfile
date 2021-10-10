@@ -25,7 +25,7 @@ pipeline{
           sh """
           docker container run -d -P --name ${env.JOB_NAME}-${BUILD_NUMBER} humayunalam/tomcat-maven
           docker cp target/*.war ${env.JOB_NAME}-${env.BUILD_NUMBER}:/opt/tomcat/webapps
-          echo "hello man"
+          echo "hello this is main"
 	  """
             }
           }
