@@ -23,8 +23,8 @@ pipeline{
      stage("deploy-dockerfile"){
        steps{
           sh """
-          docker build . -t tomcat_dockerfile
-          docker container run -d -P --name dockerfile-${env.BUILD_NUMBER} tomcat_dockerfile
+          docker build . -t humayunalam/tomcat_dockerfile
+          docker container run -d -P --name dockerfile-${env.BUILD_NUMBER} humayunalam/tomcat_dockerfile
           docker cp target/*.war dockerfile-${env.BUILD_NUMBER}:/opt/tomcat/webapps
           """
             }
@@ -34,8 +34,8 @@ pipeline{
               success {
                  withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                    sh "docker push tomcat_dockerfile:${env.BUILD_ID}"
-                    sh "docker push tomcat_dockerfile:latest"
+                    sh "docker push humayunalam/tomcat_dockerfile:${env.BUILD_ID}"
+                    sh "docker push humayunalam/tomcat_dockerfile:latest"
                 } 
              }
          }
