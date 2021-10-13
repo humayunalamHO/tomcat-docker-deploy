@@ -34,7 +34,7 @@ pipeline{
               success {
                  withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                    sh "docker push humayunalam/tomcat_dockerfile:${env.BUILD_ID}"
+//                    sh "docker push humayunalam/tomcat_dockerfile:${env.BUILD_ID}"
                     sh "docker push humayunalam/tomcat_dockerfile:latest"
                 } 
              }
