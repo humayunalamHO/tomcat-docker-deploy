@@ -24,7 +24,7 @@ pipeline{
        steps{
           sh """
           docker build -t humayunalam/tomcat_dockerfile:${env.BUILD_ID} .
- 	  sh "docker tag humayunalam/tomcat_dockerfile:${env.BUILD_ID} humayunalam/tomcat_dockerfile:latest"
+ 	  docker tag humayunalam/tomcat_dockerfile:${env.BUILD_ID} humayunalam/tomcat_dockerfile:latest
           docker container run -d -P --name dockerfile-${env.BUILD_NUMBER} humayunalam/tomcat_dockerfile:${env.BUILD_ID}
           docker cp target/*.war dockerfile-${env.BUILD_NUMBER}:/opt/tomcat/webapps
           """
