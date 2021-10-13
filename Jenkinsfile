@@ -9,7 +9,7 @@ pipeline{
   stages{
     stage("Git Checkout"){
       steps{
-          git branch: 'main',
+          git branch: 'dockerfile',
             credentialsId: 'github',
             url: 'https://github.com/humayun-alam/tomcat-docker-deploy.git'
            }
@@ -20,12 +20,13 @@ pipeline{
             sh "mv target/*.war target/myweb.war"
              }
             }
-     stage("deploy-docker"){
+     stage("deploy-dockerfile"){
        steps{
           sh """
-          docker container run -d -P --name ${env.JOB_NAME}-${BUILD_NUMBER} humayunalam/tomcat-maven
-          docker cp target/*.war ${env.JOB_NAME}-${env.BUILD_NUMBER}:/opt/tomcat/webapps
-          echo "hello this is main"
+          docker build . -t tomcat_dockerfile 
+          docker container run -d -P --name dockerfile-${env.BUILD_NUMBER} tomcat_dockerfile
+          docker cp target/*.war dockerfile-${env.BUILD_NUMBER}:/opt/tomcat/webapps
+	  echo "This is Dockerfile 3.0"
 	  """
             }
           }
