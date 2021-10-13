@@ -29,14 +29,14 @@ pipeline{
           """
             }
           }
-          post {
+        }
+        post {
               success {
                  withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                     sh "docker push humayunalam/tomcat-docker-deploy:${env.BUILD_ID}"
-                     sh "docker push humayunalam/tomcat-docker-deploy:latest"
-                 } 
-              }
-          }
-        }
-      }
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                    sh "docker push humayunalam/tomcat-docker-deploy:${env.BUILD_ID}"
+                    sh "docker push humayunalam/tomcat-docker-deploy:latest"
+                } 
+             }
+         }
+    }
