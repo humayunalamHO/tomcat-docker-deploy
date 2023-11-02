@@ -1,7 +1,5 @@
 pipeline{
-  agent {
-    label "test-server"
-  }
+  agent any
 
   tools {
     maven "maven"
