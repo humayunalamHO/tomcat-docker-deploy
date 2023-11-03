@@ -3,7 +3,7 @@ pipeline{
 
   tools {
     maven "maven"
-    docker "docker"
+
   }
   stages{
     stage("Git Checkout"){
@@ -20,6 +20,7 @@ pipeline{
              }
             }
      stage("deploy-dockerfile"){
+      agent { dockerfile true}
        steps{
           sh """
           docker build -t humayunalam/tomcat_dockerfile:${env.BUILD_ID} .
